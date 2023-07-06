@@ -32,14 +32,20 @@
 
     // 球体を作成
     const geometry = new THREE.SphereGeometry(300, 30, 30);
-    const material = new THREE.MeshStandardMaterial({ color: 0xbf0000});
+    // 画像を読み込む
+    const loader = new THREE.TextureLoader();
+    const texture = loader.load('imgs/earthmap1k.jpg');
+    // マテリアルにテクスチャーを設定
+    const material = new THREE.MeshStandardMaterial({
+      map: texture
+    });
     // メッシュを作成
     const mesh = new THREE.Mesh(geometry, material);
     // 3D空間にメッシュを追加
     scene.add(mesh);
 
     // 平行光源
-    const directionalLight = new THREE.DirectionalLight(0xffffff);
+    const directionalLight = new THREE.DirectionalLight(0xFFFFFF);
     directionalLight.position.set(1, 1, 1);
     // シーンに追加
     scene.add(directionalLight);
